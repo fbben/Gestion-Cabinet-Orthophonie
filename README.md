@@ -1,1 +1,2 @@
 # Gestion-Cabinet-Orthophonie
+Dans ce projet, on désire concevoir et réaliser un logiciel d'aide à la gestion d'un cabinet d'orthophonie en offrant un moyen simple et efficace pour l'organisation des rendez-vous, la prise en charge et le suivi des patients.
