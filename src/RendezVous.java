@@ -24,12 +24,12 @@ class Consultation extends RendezVous {
 
 class Suivi extends RendezVous {
     private int nDossier;
-    private boolean type; // Presentiel: 0. En-ligne: 1.
+    private boolean deroulement; // Presentiel: 0. En-ligne: 1.
 
-    Suivi(double date, double heure, TypeRendezVous type, double duree, int nDossier, boolean type) {
+    Suivi(double date, double heure, TypeRendezVous type, double duree, int nDossier, boolean deroulement) {
         super(date, heure, TypeRendezVous.Suivi, duree);
         this.nDossier = nDossier;
-        this.type = type;
+        this.deroulement = deroulement;
     }
 
 }
@@ -38,11 +38,11 @@ class Atelier extends RendezVous {
     private Patient[] listePatients;
     private String theme;
 
-   Atelier (double date, double heure, TypeRendezVous type, double duree, Patient listePatients, String theme){
-   super(date, heure, TypeRendezVous.Atelier, duree);
-   this.listePatients = listePatients;
-   this.theme = theme;
-   }
+    Atelier(double date, double heure, TypeRendezVous type, double duree, Patient[] listePatients, String theme) {
+        super(date, heure, TypeRendezVous.Atelier, duree);
+        this.listePatients = listePatients;
+        this.theme = theme;
+    }
 }
 
 enum TypeRendezVous {
