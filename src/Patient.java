@@ -4,7 +4,7 @@ abstract class Patient {
     protected String dateDeNaissance;
     protected String lieuDeNaissance;
     protected String adresse;
-
+    
     Patient(String nom, String prenom, String dateDeNaissance, String lieuDeNaissance, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
@@ -32,6 +32,7 @@ class Adulte extends Patient {
 
     private String diplome;
     private String profession;
+    private int nTlph;
 
     Adulte(String nom, String prenom, String dateDeNaissance, String lieuDeNaissance, String adresse,
             String diplome, String profession) {
