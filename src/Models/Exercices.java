@@ -1,14 +1,17 @@
+package Models;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-class Exercice {
+
+class Exercice implements Serializable{
     protected String consigne;
     protected String material;
     protected ArrayList<Double> score;
 
-    public Exercice(String consigne, String material, ArrayList<Double> score) {
+    public Exercice(String consigne, String material) {
         this.consigne = consigne;
         this.material = material;
-        this.score = score;
+        this.score = new ArrayList<>();
     }
 
     public double CalculerScoreMoyen() {
@@ -22,4 +25,4 @@ class Exercice {
     public double getScoreMoyen() {
         return CalculerScoreMoyen();
     }
-}
+} 

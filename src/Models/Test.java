@@ -1,3 +1,4 @@
+package Models;
 import java.util.ArrayList;
 
 class Test {
@@ -19,9 +20,9 @@ class Test {
 class TQuestionnaires extends Test {
     private ArrayList<QEpreuves> questions;
 
-    TQuestionnaires(String nom, String capacite, ArrayList<QEpreuves> questions) {
+    TQuestionnaires(String nom, String capacite) {
         super(nom, capacite);
-        this.questions = questions;
+        this.questions = new ArrayList<>();
     }
 
     public double CalculerScoreTotal() {
@@ -31,14 +32,19 @@ class TQuestionnaires extends Test {
         }
         return (somme);
     }
+
+    public ArrayList<QEpreuves> getquestions(){
+        return questions;
+    }
 }
 
 class TExercice extends Test {
     private ArrayList<Exercice> exercices;
 
-    TExercice(String nom, String capacite, ArrayList<Exercice> questions) {
+    TExercice(String nom, String capacite) {
         super(nom, capacite);
-        this.exercices = exercices;
+        this.exercices = new ArrayList<>();
+        
     }
 
     public double CalculerScoreTotal() {
@@ -48,4 +54,10 @@ class TExercice extends Test {
         }
         return (somme);
     }
+   
+
+    public ArrayList<Exercice> getexercices(){
+        return exercices;
+    }
+
 }

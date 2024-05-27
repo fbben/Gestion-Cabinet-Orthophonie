@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #dcd7e6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Canamneses">
+   <left>
+      <VBox prefHeight="720.0" prefWidth="314.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="724.0" prefWidth="314.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="183.0" prefWidth="314.0">
+                     <children>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="167.0" prefWidth="314.0">
+                           <children>
+                              <Label fx:id="user" alignment="CENTER" prefHeight="63.0" prefWidth="194.0" text="DR. Grine" textFill="#dcd7e6">
+                                 <font>
+                                    <Font name="DM Sans Regular" size="33.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Line disable="true" endX="142.2928924560547" endY="1.2426612377166748" startX="-111.38969421386719" startY="1.242661952972412" stroke="#dcd7e6">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Line>
+                  <Button fx:id="Rendez_vous" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Rendez_vous" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Rendez-Vous" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dcd7e6" glyphName="CALENDAR" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Dossiers" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Dossiers" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Dossiers" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dcd7e6" glyphName="FOLDER" text="" wrappingWidth="166.0" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Tests" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Tests" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Tests" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dcd7e6" glyphName="PENCIL" wrappingWidth="138.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Anamneses" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Anamneses" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: #dcd7e6; -fx-background-radius: 10;" text="Anamnèses" textFill="#20314c">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#20314c" glyphName="HISTORY" wrappingWidth="210.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="stat" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#stat" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Statistiques" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dcd7e6" glyphName="PIE_CHART" wrappingWidth="210.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="parametres" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#parametres" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Paramètres" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#dcd7e6" glyphName="GEAR" wrappingWidth="210.0" />
+                     </graphic>
+                  </Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="115.0" prefWidth="314.0">
+                     <children>
+                        <Line endX="142.2928924560547" endY="1.2426612377166748" startX="-84.14215087890625" startY="1.5149245262145996" stroke="#dcd7e6">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Line>
+                     </children>
+                  </VBox>
+                  <Button fx:id="deconnect" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#déconnecter" prefHeight="55.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Se déconnecter" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="720.0" prefWidth="914.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="714.0" prefWidth="966.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="109.0" prefWidth="966.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="966.0">
+                           <children>
+                              <TextField fx:id="search" prefHeight="30.0" prefWidth="333.0" promptText="Test" style="-fx-background-radius: 5;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="100.0" top="50.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="searchbutton" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 5;" text="Rechercher" textFill="#dcd7e6">
+                                 <HBox.margin>
+                                    <Insets top="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="DM Sans Regular" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="518.0" prefWidth="966.0">
+                     <children>
+                        <TableView fx:id="anamneses" prefHeight="559.0" prefWidth="750.0" style="-fx-background-radius: 20;">
+                          <columns>
+                            <TableColumn fx:id="titre" prefWidth="243.0" style="-fx-background-radius: 5;" styleClass="cusom-table" text="Titre" />
+                            <TableColumn fx:id="description" prefWidth="522.0" style="-fx-background-radius: 5;" text="Description" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow height="7.57" radius="1.3925" width="0.0">
+                                 <color>
+                                    <Color opacity="0.347328245639801" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="966.0">
+                     <children>
+                        <Button fx:id="creer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#creer" prefHeight="45.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 20;" text="Créer" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="modifier" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifier" prefHeight="15.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 20;" text="Modifier" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children></VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -1,23 +1,21 @@
+package Models;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-class Question {
+public class Question implements Serializable{
     private String enonce;
 
-    Question(String ennoce) {
-        this.enonce = enonce;
+    public Question(String ennoce) {
+        this.enonce = ennoce;
+    }
+
+
+    public String getEnonce() {
+        return enonce;
     }
 }
 
-class QAnamnese extends Question {
-    private Categorie categorie;
-    private String reponse;
 
-    QAnamnese(String ennoce, Categorie categorie) {
-        super(ennoce);
-        this.categorie = categorie;
-    }
-
-}
 
 /* ----------------------------------------------------------- */
 class QEpreuves extends Question {

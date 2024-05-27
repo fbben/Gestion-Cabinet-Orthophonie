@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #dcd7e6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main">
+   <left>
+      <VBox prefHeight="720.0" prefWidth="314.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="724.0" prefWidth="314.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="183.0" prefWidth="314.0">
+                     <children>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="167.0" prefWidth="314.0">
+                           <children>
+                              <Label fx:id="user" alignment="CENTER" prefHeight="63.0" prefWidth="194.0" text="DR. Grine" textFill="#dcd7e6">
+                                 <font>
+                                    <Font name="DM Sans Regular" size="33.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Line disable="true" endX="142.2928924560547" endY="1.2426612377166748" startX="-111.38969421386719" startY="1.242661952972412" stroke="#dcd7e6">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Line>
+                  <Button fx:id="Rendez_vous" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Rendez_vous" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: #dcd7e6; -fx-background-radius: 10;" text="Rendez-Vous" textFill="#20314c">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="CALENDAR" size="22" text="" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Dossiers" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Dossiers" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Dossiers" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="FOLDER" size="22" text="" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Tests" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Tests" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Tests" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="PENCIL" size="22" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Anamneses" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Anamneses" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Anamnèses" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="HISTORY" size="22" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="stat" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#stat" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Statistiques" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="PIE_CHART" size="22" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="parametres" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#parametres" prefHeight="51.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Paramètres" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon glyphName="GEAR" selectionStart="0" size="22" text="" wrappingWidth="212.0" />
+                     </graphic>
+                  </Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="115.0" prefWidth="314.0">
+                     <children>
+                        <Line endX="142.2928924560547" endY="1.2426612377166748" startX="-84.14215087890625" startY="1.5149245262145996" stroke="#dcd7e6">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Line>
+                     </children>
+                  </VBox>
+                  <Button fx:id="deconnect" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deconnect" prefHeight="55.0" prefWidth="264.0" style="-fx-background-color: 0; -fx-background-radius: 10;" text="Se déconnecter" textFill="#dcd7e6">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="720.0" prefWidth="914.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="714.0" prefWidth="966.0" />
+            <VBox alignment="TOP_RIGHT" prefHeight="211.0" prefWidth="966.0">
+               <children>
+                  <Button fx:id="AjouterRDV" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AjouterRDV" prefHeight="45.0" prefWidth="234.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 20;" text="Ajouter Rendez-Vous" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="40.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

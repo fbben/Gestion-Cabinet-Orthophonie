@@ -1,4 +1,7 @@
-public class Diagnostic {
+package Models;
+import java.io.Serializable;
+
+public class Diagnostic implements Serializable{
     private String nomTrouble;
     private CategorieTrouble categorie;
 
