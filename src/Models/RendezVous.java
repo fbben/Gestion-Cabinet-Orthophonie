@@ -27,7 +27,14 @@ public abstract class RendezVous implements Serializable{
     public TypeRendezVous getType() {
         return type;
     }
-    
+ 
+    public double getDuree() {
+        return duree;
+    }
+
+    public LocalTime getHeure() {
+        return heure;
+    }
     
 }
 

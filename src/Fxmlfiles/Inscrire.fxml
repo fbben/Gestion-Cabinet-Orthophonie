@@ -78,6 +78,11 @@
                   </Button>
                </children>
             </VBox>
+            <Button fx:id="retour" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#retour" prefHeight="13.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(to right bottom, #20314c, #2d3d56, #3a4961, #47556b, #546276); -fx-background-radius: 20;" text="Retour" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
          </children>
       </VBox>
    </top>

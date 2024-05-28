@@ -120,6 +120,11 @@ public class Cadulte implements Initializable{
         LocalDate Rdv = this.dateRDV;
         String observation = this.observation;
 
+        if (heure.getValue() != 1 || minutes.getValue() != 30) {
+            showAlert("Error", "Please enter a valid duration. Heure should be 1 and minutes should be 30.");
+            return; 
+        }
+
         if (!validateInput(nom, "nom") || !validateInput(prenom, "prenom") || date_naissance == null ||
         !validateInput(adresse, "adresse") || !validateInput(Prof, "profession") ||
         !validateInput(lieu_naissance, "lieu de naissance")
@@ -154,7 +159,11 @@ public class Cadulte implements Initializable{
             Consultation newRDV = new Consultation(dateRDV,skl, observation, newPatient);
             System.out.println("New RDV created: " + newRDV);
 
-            
+            if (currentUser.Cheuvauchement(newRDV)) {
+                showAlert("Error", "The new RDV overlaps with an existing RDV.");
+                return; 
+            }
+             
              
             currentUser = SessionManager.getInstance().getCurrentUser();
             currentUser.creerDossier(newPatient,newRDV);

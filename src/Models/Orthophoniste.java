@@ -1,5 +1,6 @@
 package Models;
-import java.io.Serializable;   
+import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 
 
-public class Orthophoniste implements Serializable {
+public class Orthophoniste implements Serializable{
     private String nom;
     private String Prenom;
     private String adress;
@@ -52,7 +53,7 @@ public class Orthophoniste implements Serializable {
         this.dossiers = new HashMap<>();
         this.Anamneses = new ArrayList<>();
     }
-    Orthophoniste(String nom,String motDePasse) {
+    public Orthophoniste(String nom,String motDePasse) {
         this.nom = nom;
         this.motDePasse=motDePasse;
         this.dossiers = new HashMap<>();
@@ -82,13 +83,18 @@ public class Orthophoniste implements Serializable {
 
 
     public void ajouterRDV(int dossierId, RendezVous rdv) {
+        if (Cheuvauchement(rdv)) {
+            System.out.println("The new RDV overlaps with an existing RDV.");
+            return;
+        }
+
         Dossier dossier = dossiers.get(dossierId);
         if (dossier != null) {
             dossier.getRDVs().add(rdv);
         } else {
             System.out.println("Dossier with ID " + dossierId + " not found.");
         }
-    } 
+    }
 
     public Map<Integer, Dossier> getDossiers() {
         return dossiers;
@@ -99,6 +105,11 @@ public class Orthophoniste implements Serializable {
     }
 
     public void creerDossier(Patient patient, RendezVous RDV) {
+        if (Cheuvauchement(RDV)) {
+            System.out.println("The new RDV overlaps with an existing RDV.");
+            return;
+        }
+
         int nextDossierId = lastDossierId + 1; // Calculate the next dossier ID
         if (!dossiers.containsKey(nextDossierId)) {
             Dossier newDossier = new Dossier(nextDossierId, patient);
@@ -115,6 +126,22 @@ public class Orthophoniste implements Serializable {
             dossiers.put(nextDossierId, newDossier);
             lastDossierId = nextDossierId; // Update the last assigned dossier ID
         }
-    } 
+    }
+
+    public boolean Cheuvauchement(RendezVous newRDV) {
+        for (Dossier dossier : dossiers.values()) {
+            for (RendezVous existingRDV : dossier.getRDVs()) {
+                if (newRDV.getDate().equals(existingRDV.getDate()) && 
+                    newRDV.getHeure().equals(existingRDV.getHeure())) {
+                    System.out.println("truuuuuuue");
+                    return true;
+                
+                }
+            }
+        }
+        return false;
+    }
+
+    
 }
 

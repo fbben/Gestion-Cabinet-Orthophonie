@@ -129,6 +129,11 @@ public class Cenfant implements Initializable {
          if (!validateNumericInput(tlphm, "tlphm") || !validateNumericInput(tlphp, "tlphp")) {
             return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères numériques
         }
+
+        if (heure.getValue() != 2 || minutes.getValue() != 30) {
+            showAlert("Error", "Please enter a valid duration. Heure should be 2 and minutes should be 30.");
+            return; // Exit the method if the duration is incorrect
+        }
         System.out.println("Nom: " + nom);
         System.out.println("Prenom: " + prenom);
         System.out.println("Date de naissance: " + date_naissance);
@@ -152,12 +157,17 @@ public class Cenfant implements Initializable {
             Enfant newPatient = new Enfant(nom, prenom, date_naissance, lieu_naissance, adresse, classe, combinedArray);
             System.out.println("New patient created: " + newPatient);
          
+
             LocalTime skl = LocalTime.of(heureRDV, minutesRDV); // For example, 9:00 AM
             Consultation newRDV = new Consultation(dateRDV,skl, observation, newPatient);
             System.out.println("New RDV created: " + newRDV);
             
 
-            
+            if (currentUser.Cheuvauchement(newRDV)) {
+                showAlert("Error", "The new RDV overlaps with an existing RDV.");
+                return; 
+            }
+             
              
             currentUser = SessionManager.getInstance().getCurrentUser();
             currentUser.creerDossier(newPatient,newRDV);

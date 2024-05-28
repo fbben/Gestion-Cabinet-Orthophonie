@@ -2,11 +2,19 @@ package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import Models.UserManager;
+
+import java.io.IOException;
+
 import Models.Orthophoniste;
 
 public class inscrireC {
@@ -24,6 +32,9 @@ public class inscrireC {
     private Button inscrire;
 
     @FXML
+    private Button retour;
+
+    @FXML
     private TextField mail;
 
     @FXML
@@ -31,6 +42,23 @@ public class inscrireC {
 
     @FXML
     private TextField nTLph;
+
+
+    @FXML
+    void retour(ActionEvent event) {
+
+        try {
+            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
+            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(ajouterRDVScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     void inscrire(ActionEvent event) {
@@ -45,9 +73,13 @@ public class inscrireC {
             showAlert("Error", "All fields are required.");
             return;
         }
+        if (!validateNumericInput(nTlph, "tlphm")) {
+            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères numériques
+        }
 
        
-        Orthophoniste newUser = new Orthophoniste(nom,prenom,adresse,nTlph,email,motDePasse);
+        //Orthophoniste newUser = new Orthophoniste(nom,prenom,adresse,nTlph,email,motDePasse);
+        Orthophoniste newUser = new Orthophoniste(nom,motDePasse);
 
         boolean isAdded = UserManager.getInstance().addUser(newUser);
 
@@ -66,5 +98,13 @@ public class inscrireC {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private boolean validateNumericInput(String input, String fieldName) {
+        if (!input.matches("\\d+")) {
+            showAlert("Error", "Please enter numeric characters for " + fieldName + ".");
+            return false;
+        }
+        return true;
     }
 }

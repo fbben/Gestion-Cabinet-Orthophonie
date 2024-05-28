@@ -140,7 +140,10 @@ public class Csuivi implements Initializable {
             Suivi newRDV = new Suivi(dateRDV,skl,observation,Integer.parseInt(numdossier), a);
             System.out.println("New RDVsuivi created: " + newRDV);
 
-            
+            if (currentUser.Cheuvauchement(newRDV)) {
+                showAlert("Error", "The new RDV overlaps with an existing RDV.");
+                return; 
+            }
              
             currentUser = SessionManager.getInstance().getCurrentUser();
             currentUser.getDossiers().get(Integer.parseInt(numdossier)).getRDVs().add(newRDV);
