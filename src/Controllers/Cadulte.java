@@ -26,7 +26,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Cadulte implements Initializable{
+public class Cadulte implements Initializable {
 
     @FXML
     private TextField adresse;
@@ -36,8 +36,6 @@ public class Cadulte implements Initializable{
 
     @FXML
     private TextField diplome;
-
-    
 
     @FXML
     private TextField lieu_naissance;
@@ -50,7 +48,6 @@ public class Cadulte implements Initializable{
 
     @FXML
     private Spinner<Integer> minutes;
-
 
     @FXML
     private TextField prenom;
@@ -72,13 +69,12 @@ public class Cadulte implements Initializable{
     int heureRDV;
     int minutesRDV;
 
-    public void initData(LocalDate selectedDate, String selectedobservation,int heure,int minutes) {
+    public void initData(LocalDate selectedDate, String selectedobservation, int heure, int minutes) {
         this.dateRDV = selectedDate;
         this.observation = selectedobservation;
-        this.heureRDV=heure;
-        this.minutesRDV=minutes;
+        this.heureRDV = heure;
+        this.minutesRDV = minutes;
     }
-    
 
     @FXML
     void Duree(ActionEvent event) {
@@ -91,29 +87,18 @@ public class Cadulte implements Initializable{
         String nom = this.nom.getText();
         String prenom = this.prenom.getText();
 
-
-        
-
         if (!nom.matches("[a-zA-Z]+") || !prenom.matches("[a-zA-Z]+")) {
-            showAlert("Error", "Please enter alphabetic characters for nom and prenom.");
+            showAlert("Error", "Veuillez saisir des caractères alphabétiques pour le nom et le prénom.");
             return; // Exit the method if either nom or prenom contains non-alphabetic characters
         }
-    
+
         // Check if duree contains only numeric characters
-        
-
-
-        
-
-
-
 
         LocalDate date_naissance = this.date.getValue();
         String adresse = this.adresse.getText();
         String Prof = this.profession.getText();
         String diplome = this.diplome.getText();
-        
-        
+
         String lieu_naissance = this.lieu_naissance.getText();
         String nTlph = this.tlph.getText();
 
@@ -121,18 +106,18 @@ public class Cadulte implements Initializable{
         String observation = this.observation;
 
         if (heure.getValue() != 1 || minutes.getValue() != 30) {
-            showAlert("Error", "Please enter a valid duration. Heure should be 1 and minutes should be 30.");
-            return; 
+            showAlert("Error", "La durée doit être de 1 heure et 30 minutes. ");
+            return;
         }
 
         if (!validateInput(nom, "nom") || !validateInput(prenom, "prenom") || date_naissance == null ||
-        !validateInput(adresse, "adresse") || !validateInput(Prof, "profession") ||
-        !validateInput(lieu_naissance, "lieu de naissance")
-        ) {
-        return; // Exit the method if any input is invalid
-         }
-         if (!validateNumericInput(nTlph, "nulTlph") ) {
-            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères numériques
+                !validateInput(adresse, "adresse") || !validateInput(Prof, "profession") ||
+                !validateInput(lieu_naissance, "lieu de naissance")) {
+            return; // Exit the method if any input is invalid
+        }
+        if (!validateNumericInput(nTlph, "nulTlph")) {
+            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères
+                    // numériques
         }
 
         System.out.println("Nom: " + nom);
@@ -149,45 +134,37 @@ public class Cadulte implements Initializable{
         Orthophoniste currentUser = SessionManager.getInstance().getCurrentUser();
         currentUser.getDossiers();
 
-    
         try {
-            
-            Adulte newPatient = new Adulte(nom, prenom, date_naissance, lieu_naissance, adresse, diplome, Prof,nTlph);
+
+            Adulte newPatient = new Adulte(nom, prenom, date_naissance, lieu_naissance, adresse, diplome, Prof, nTlph);
             System.out.println("New patient created: " + newPatient);
-         
+
             LocalTime skl = LocalTime.of(9, 0); // For example, 9:00 AM
-            Consultation newRDV = new Consultation(dateRDV,skl, observation, newPatient);
+            Consultation newRDV = new Consultation(dateRDV, skl, observation, newPatient);
             System.out.println("New RDV created: " + newRDV);
 
             if (currentUser.Cheuvauchement(newRDV)) {
-                showAlert("Error", "The new RDV overlaps with an existing RDV.");
-                return; 
+                showAlert("Error", "Le nouveau rendez-vous chevauche un rendez-vous existant.");
+                return;
             }
-             
-             
+
             currentUser = SessionManager.getInstance().getCurrentUser();
-            currentUser.creerDossier(newPatient,newRDV);
+            currentUser.creerDossier(newPatient, newRDV);
             System.out.println(currentUser.getDossiers());
 
-            
-
-           
-            showAlert("RDV", "IRendez_vous cree.");
+            showAlert("RDV", "Votre rendez-vous a été enregistré avec succès.");
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "Invalid informations.");
+            showAlert("Error", "Informations invalides.");
         }
-
-       
-
 
     }
 
     @FXML
     void retour(ActionEvent event) {
-         try {
+        try {
             Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/AjouterRDV.fxml"));
             Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
 
@@ -200,7 +177,7 @@ public class Cadulte implements Initializable{
 
     }
 
-     private void showAlert(String title, String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -209,18 +186,18 @@ public class Cadulte implements Initializable{
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        SpinnerValueFactory<Integer> valueFactory1 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
-        SpinnerValueFactory<Integer> valueFactory2 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+        SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
 
-        //valueFactory.setValue(null);
-           heure.setValueFactory(valueFactory1);
-           minutes.setValueFactory(valueFactory2);
-        
+        // valueFactory.setValue(null);
+        heure.setValueFactory(valueFactory1);
+        minutes.setValueFactory(valueFactory2);
+
     }
-   
+
     private boolean validateInput(String input, String fieldName) {
         if (input.isEmpty()) {
-            showAlert("Error", "Please enter a value for " + fieldName + ".");
+            showAlert("Error", "Un champ est obligatoire. Veuillez saisir une valeur pour " + fieldName + ".");
             return false;
         }
         return true;
@@ -228,10 +205,10 @@ public class Cadulte implements Initializable{
 
     private boolean validateNumericInput(String input, String fieldName) {
         if (!input.matches("\\d+")) {
-            showAlert("Error", "Please enter numeric characters for " + fieldName + ".");
+            showAlert("Error", "Veuillez saisir des caractères numériques pour" + fieldName + ".");
             return false;
         }
         return true;
     }
-    
+
 }

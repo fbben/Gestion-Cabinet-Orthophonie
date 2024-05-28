@@ -1,4 +1,5 @@
 package Controllers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -72,7 +74,7 @@ public class Canamneses implements Initializable {
     private Label user;
 
     public void setUserData(Orthophoniste userr) {
-        user.setText( "Dr." + userr.getNom());
+        user.setText("Dr." + userr.getNom());
     }
 
     @FXML
@@ -83,17 +85,16 @@ public class Canamneses implements Initializable {
     @FXML
     void Dossiers(ActionEvent event) {
         try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
-                Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
+            Parent root = loader.load();
 
-                // Get the controller of the new scene
-                Cdossiers Cdos=loader.getController();
-                Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
+            // Get the controller of the new scene
+            Cdossiers Cdos = loader.getController();
+            Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
-                Stage stage = (Stage) Dossiers.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-
+            Stage stage = (Stage) Dossiers.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -134,6 +135,17 @@ public class Canamneses implements Initializable {
     @FXML
     void déconnecter(ActionEvent event) {
 
+        try {
+            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
+            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(ajouterRDVScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -159,7 +171,7 @@ public class Canamneses implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("No Anamnese selected!");
+            System.out.println("Aucune Anamnese n'est selectionné");
         }
 
     }
@@ -173,8 +185,9 @@ public class Canamneses implements Initializable {
     void stat(ActionEvent event) {
 
     }
+
     private ObservableList<Anamnese> anamnesesList;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Orthophoniste currentUser = SessionManager.getInstance().getCurrentUser();
@@ -187,10 +200,11 @@ public class Canamneses implements Initializable {
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
     }
+
     private void loadAnamneses(Orthophoniste user) {
         List<Anamnese> anamneses = user.getAnamneses();
         if (anamneses == null) {
-            System.out.println("No anamneses found for the user!");
+            System.out.println("pas d'anamneses trouvées por cet utilisateur!");
         } else {
             for (Anamnese anamnese : anamneses) {
                 System.out.println("Loaded anamnese: " + anamnese.getTitre() + " - " + anamnese.getDescription());

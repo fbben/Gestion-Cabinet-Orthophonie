@@ -1,4 +1,5 @@
 package Controllers;
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -22,14 +23,13 @@ public class CBienvenue {
 
     @FXML
     void connecter(ActionEvent event) {
-       try {
-            
+        try {
+
             Parent connecterRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Connecter.fxml"));
             Scene connecterScene = new Scene(connecterRoot);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            
             stage.setScene(connecterScene);
             stage.show();
         } catch (IOException e) {
@@ -40,13 +40,12 @@ public class CBienvenue {
     @FXML
     void inscrire(ActionEvent event) {
         try {
-            
+
             Parent connecterRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Inscrire.fxml"));
             Scene connecterScene = new Scene(connecterRoot);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            
             stage.setScene(connecterScene);
             stage.show();
         } catch (IOException e) {

@@ -1,5 +1,6 @@
 package Models;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 
 
@@ -8,6 +9,7 @@ public class Dossier implements Serializable {
     private Patient patient;
     private ArrayList <BilanOrthophonique> BOs;
     private ArrayList <RendezVous> RDVs;
+    private List<Fiche_suivi> fichesSuivi;
     //la fiche.
  
     public Dossier(int nDossier, Patient patient) {
@@ -15,6 +17,7 @@ public class Dossier implements Serializable {
         this.patient = patient;
         this.BOs = new ArrayList<>();
         this.RDVs = new ArrayList<>();
+        this.fichesSuivi = new ArrayList<>();
     }
     
     public void setpatient(Patient patient){
@@ -50,6 +53,14 @@ public class Dossier implements Serializable {
 
     public String getPatientPrenom() {
         return patient.getPrenom();
+    }
+
+    public List<Fiche_suivi> getFichesSuivi() {
+        return fichesSuivi;
+    }
+
+    public void addFicheSuivi(Fiche_suivi ficheSuivi) {
+        this.fichesSuivi.add(ficheSuivi);
     }
 
 }

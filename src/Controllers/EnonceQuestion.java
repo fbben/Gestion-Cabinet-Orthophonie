@@ -3,7 +3,6 @@ package Controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
-
-
-public class EnonceQuestion implements Initializable{
+public class EnonceQuestion implements Initializable {
 
     @FXML
     private ChoiceBox<String> categorie;
@@ -36,11 +33,10 @@ public class EnonceQuestion implements Initializable{
     }
 
     private ObservableList<String> categoriestypes = FXCollections.observableArrayList(
-          
+
     );
 
-  ;
-    
+    ;
 
     @FXML
     void save(ActionEvent event) {
@@ -51,7 +47,7 @@ public class EnonceQuestion implements Initializable{
             QAnamnese question = new QAnamnese(enonceText, selectedCategory);
             System.out.println("question created");
             parentController.addQuestion(question);
-            //closeStage();
+            // closeStage();
         } else {
             // Handle validation error (e.g., show an alert)
         }
@@ -59,11 +55,10 @@ public class EnonceQuestion implements Initializable{
     }
 
     public void setquestiontype(String selectedTypee) {
-       this.selectedtype= selectedTypee;
-       initializeCategorie();
+        this.selectedtype = selectedTypee;
+        initializeCategorie();
     }
 
-    
     private void initializeCategorie() {
         if ("Enfant".equals(selectedtype)) {
             System.out.println("yessss");
@@ -73,15 +68,13 @@ public class EnonceQuestion implements Initializable{
                     "antécédents_familiaux",
                     "conditions_natales",
                     "développement_psychomoteur",
-                    "développement_langagier"
-            );
+                    "développement_langagier");
         } else if ("Adulte".equals(selectedtype)) {
             System.out.println("noooooo");
             categoriestypes = FXCollections.observableArrayList(
                     "caractère_et_comportement",
                     "Histoire",
-                    "Suivi_Médical"
-            );
+                    "Suivi_Médical");
         }
         categorie.setItems(categoriestypes);
     }

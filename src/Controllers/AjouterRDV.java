@@ -28,7 +28,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class AjouterRDV implements Initializable{
+public class AjouterRDV implements Initializable {
 
     @FXML
     private ChoiceBox<String> ages;
@@ -44,24 +44,20 @@ public class AjouterRDV implements Initializable{
 
     @FXML
     private ChoiceBox<String> typesRDV;
-    
+
     private ObservableList<String> appointmentTypes = FXCollections.observableArrayList(
-            "Consultaion", "Suivi", "Atelier" 
-    );
+            "Consultaion", "Suivi", "Atelier");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typesRDV.setItems(appointmentTypes);
         ages.setItems(agesTypes);
-         
-        SpinnerValueFactory<Integer> valueFactory1 =new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 17, 8);
-        SpinnerValueFactory<Integer> valueFactory2 =new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 59, 00);
 
-         
-           heure.setValueFactory(valueFactory1);
-           minutes.setValueFactory(valueFactory2);
-        
+        SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 17, 8);
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 59, 00);
 
+        heure.setValueFactory(valueFactory1);
+        minutes.setValueFactory(valueFactory2);
 
         typesRDV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -75,13 +71,11 @@ public class AjouterRDV implements Initializable{
                 }
             }
 
-
-
         });
     }
+
     private ObservableList<String> agesTypes = FXCollections.observableArrayList(
-            "Adulte", "Enfant" 
-    );
+            "Adulte", "Enfant");
 
     @FXML
     private Spinner<Integer> heure;
@@ -109,57 +103,55 @@ public class AjouterRDV implements Initializable{
         String selectedType = typesRDV.getValue();
         String selectedAge = ages.getValue();
         LocalDate selectedDate = date.getValue();
-        String selectedobservation= text.getText();
-        int selectedheure =heure.getValue();
-        int selectedminutes =minutes.getValue();
-        
+        String selectedobservation = text.getText();
+        int selectedheure = heure.getValue();
+        int selectedminutes = minutes.getValue();
+
         if (selectedDate == null || selectedDate.isBefore(LocalDate.now())) {
             // Display an alert
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Invalid Date");
+            alert.setTitle("Error");
             alert.setHeaderText(null);
             if (selectedDate == null) {
-                alert.setContentText("Please select a date.");
+                alert.setContentText("Veuillez sélectionner une date.");
             } else {
-                alert.setContentText("The selected date cannot be before today's date.");
+                alert.setContentText("Impossible de choisir une date avant aujourd'hui !");
             }
             alert.showAndWait();
             return; // Prevent further execution
         }
-    
+
         try {
             FXMLLoader loader = new FXMLLoader();
             Parent root = null;
-    
+
             if ("Consultaion".equals(selectedType) && "Enfant".equals(selectedAge)) {
                 root = loader.load(getClass().getResource("/Fxmlfiles/Consultation_enfant.fxml").openStream());
                 Cenfant controller = loader.getController();
-                controller.initData(selectedDate, selectedobservation,selectedheure,selectedminutes);
-                
+                controller.initData(selectedDate, selectedobservation, selectedheure, selectedminutes);
+
             } else if ("Consultaion".equals(selectedType) && "Adulte".equals(selectedAge)) {
                 root = loader.load(getClass().getResource("/Fxmlfiles/Consultation_adulte.fxml").openStream());
                 Cadulte controller = loader.getController();
-                controller.initData(selectedDate, selectedobservation,selectedheure,selectedminutes);
-            }else if ("Atelier".equals(selectedType)) {
+                controller.initData(selectedDate, selectedobservation, selectedheure, selectedminutes);
+            } else if ("Atelier".equals(selectedType)) {
                 // Load the AjouterRDV scene
                 root = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Atelier.fxml"));
             } else if ("Suivi".equals(selectedType)) {
                 // Load the AjouterRDV scene
                 root = loader.load(getClass().getResource("/Fxmlfiles/Suivi.fxml").openStream());
                 Csuivi controller = loader.getController();
-                controller.initData(selectedDate, selectedobservation,selectedheure,selectedminutes);
+                controller.initData(selectedDate, selectedobservation, selectedheure, selectedminutes);
             }
-    
+
             // Get a reference to the current stage
             Stage stage = (Stage) suivant.getScene().getWindow();
-    
+
             // Update the scene with the new content
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    
 
 }

@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,9 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
-
-public class Cdossiers implements Initializable  {
-
+public class Cdossiers implements Initializable {
 
     @FXML
     private Button Anamneses;
@@ -81,9 +80,8 @@ public class Cdossiers implements Initializable  {
     private Label user;
 
     public void setUserData(Orthophoniste userr) {
-        user.setText( "Dr." + userr.getNom());
+        user.setText("Dr." + userr.getNom());
     }
-
 
     @FXML
     void Anamneses(ActionEvent event) {
@@ -92,18 +90,16 @@ public class Cdossiers implements Initializable  {
             Parent root = loader.load();
 
             // Get the controller of the new scene
-            Canamneses Cdos=loader.getController();
+            Canamneses Cdos = loader.getController();
             Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
             Stage stage = (Stage) Anamneses.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -116,18 +112,16 @@ public class Cdossiers implements Initializable  {
     void Rendez_vous(ActionEvent event) {
 
         try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Main.fxml"));
-                Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Main.fxml"));
+            Parent root = loader.load();
 
-                // Get the controller of the new scene
-                Main main=loader.getController();
-                main.setUserData(SessionManager.getInstance().getCurrentUser());
-                
+            // Get the controller of the new scene
+            Main main = loader.getController();
+            main.setUserData(SessionManager.getInstance().getCurrentUser());
 
-                Stage stage = (Stage) Rendez_vous.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-
+            Stage stage = (Stage) Rendez_vous.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,7 +139,7 @@ public class Cdossiers implements Initializable  {
 
         System.out.println("you clicked me");
         Dossier selectedDossier = dossiersTable.getSelectionModel().getSelectedItem();
-        if (selectedDossier.getpatient() instanceof Enfant ) {
+        if (selectedDossier.getpatient() instanceof Enfant) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/ConsulterDossierEnfant.fxml"));
                 Parent root = loader.load();
@@ -164,7 +158,7 @@ public class Cdossiers implements Initializable  {
                 e.printStackTrace();
             }
         }
-        if (selectedDossier.getpatient() instanceof Adulte ) {
+        if (selectedDossier.getpatient() instanceof Adulte) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/ConsulterDossierAdulte.fxml"));
                 Parent root = loader.load();
@@ -184,7 +178,6 @@ public class Cdossiers implements Initializable  {
             }
         }
 
-
     }
 
     @FXML
@@ -194,6 +187,17 @@ public class Cdossiers implements Initializable  {
 
     @FXML
     void deconnect(ActionEvent event) {
+
+        try {
+            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
+            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(ajouterRDVScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -212,7 +216,6 @@ public class Cdossiers implements Initializable  {
 
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Orthophoniste currentUser = SessionManager.getInstance().getCurrentUser();
@@ -220,20 +223,17 @@ public class Cdossiers implements Initializable  {
         initializeTableColumns();
         loadDossiers(currentUser);
     }
-    
 
-
-     private void initializeTableColumns() {
+    private void initializeTableColumns() {
         ndossier.setCellValueFactory(new PropertyValueFactory<>("nDossier"));
         nom.setCellValueFactory(new PropertyValueFactory<>("patientNom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("patientPrenom"));
     }
+
     private void loadDossiers(Orthophoniste user) {
         List<Dossier> dossiers = user.getDossiersList();
         ObservableList<Dossier> dossiersList = FXCollections.observableArrayList(dossiers);
         dossiersTable.setItems(dossiersList);
     }
 
-    
-    
 }

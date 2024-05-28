@@ -5,15 +5,28 @@ import java.util.*;
 
 public class Fiche_suivi implements Serializable {
     
-    private LinkedList<Objectif> objectifs;
+    private String title;
+    private List<Objectif> objectifs;
+
+    public Fiche_suivi(String title) {
+        this.title = title;
+        this.objectifs = new ArrayList<>();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Objectif> getObjectifs() {
+        return objectifs;
+    }
+
+    public void addObjectif(Objectif objectif) {
+        objectifs.add(objectif);
+    }
     
 }
 
 
 
-class Objectif{
-    private String nom;
-    private String type;
-    private int note;
 
-}

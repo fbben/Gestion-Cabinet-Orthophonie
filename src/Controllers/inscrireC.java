@@ -43,7 +43,6 @@ public class inscrireC {
     @FXML
     private TextField nTLph;
 
-
     @FXML
     void retour(ActionEvent event) {
 
@@ -69,29 +68,30 @@ public class inscrireC {
         String motDePasse = motdepasse.getText();
         String nTlph = this.nTLph.getText();
 
-        if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty() || motDePasse.isEmpty() || nTlph.isEmpty()) {
-            showAlert("Error", "All fields are required.");
+        if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty() || motDePasse.isEmpty()
+                || nTlph.isEmpty()) {
+            showAlert("Error", "Tous les champs sont obligatoires.");
             return;
         }
-        if (!validateNumericInput(nTlph, "tlphm")) {
-            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères numériques
+        if (!validateNumericInput(nTlph, "nTlph")) {
+            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères
+                    // numériques
         }
 
-       
-        //Orthophoniste newUser = new Orthophoniste(nom,prenom,adresse,nTlph,email,motDePasse);
-        Orthophoniste newUser = new Orthophoniste(nom,motDePasse);
+        // Orthophoniste newUser = new
+        // Orthophoniste(nom,prenom,adresse,nTlph,email,motDePasse);
+        Orthophoniste newUser = new Orthophoniste(nom, motDePasse);
 
         boolean isAdded = UserManager.getInstance().addUser(newUser);
 
         if (isAdded) {
-            showAlert("Success", "Registration successful!");
+            showAlert("réussie", "Inscription réussie!");
             // Clear the fields or redirect to login
         } else {
-            showAlert("Error", "User already exists.");
+            showAlert("Error", "Utilisateur exicte! .");
         }
     }
 
-   
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -102,7 +102,7 @@ public class inscrireC {
 
     private boolean validateNumericInput(String input, String fieldName) {
         if (!input.matches("\\d+")) {
-            showAlert("Error", "Please enter numeric characters for " + fieldName + ".");
+            showAlert("Error", "Merci de saisir uniquement des chiffres pour " + fieldName + ".");
             return false;
         }
         return true;

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -47,8 +48,7 @@ public class Creeranamnese implements Initializable {
     private TextField titre;
 
     private ObservableList<String> agesTypes = FXCollections.observableArrayList(
-            "Adulte", "Enfant"
-    );
+            "Adulte", "Enfant");
 
     private ObservableList<QAnamnese> questionsList;
 
@@ -65,7 +65,7 @@ public class Creeranamnese implements Initializable {
                     protected void updateItem(QAnamnese item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item != null) {
-                            setText(item.getEnonce());  // Adjust to display relevant information
+                            setText(item.getEnonce()); // Adjust to display relevant information
                         } else {
                             setText(null);
                         }
@@ -73,6 +73,8 @@ public class Creeranamnese implements Initializable {
                 };
             }
         });
+
+        loadPredefinedQuestions();
     }
 
     @FXML
@@ -121,7 +123,7 @@ public class Creeranamnese implements Initializable {
         String descriptionText = description.getText();
 
         if (titreText.isEmpty() || descriptionText.isEmpty()) {
-            showAlert("error"," Ajouuter le titre et la description");
+            showAlert("error", " Ajouter le titre et la description");
         }
 
         Anamnese anamnese = new Anamnese(titreText, descriptionText);
@@ -129,15 +131,28 @@ public class Creeranamnese implements Initializable {
         SessionManager.getInstance().getCurrentUser().addAnamnese(anamnese);
         System.out.println("anamnes added");
         System.out.println("Anamnese saved: " + anamnese);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
 
     }
 
-     private void showAlert(String title, String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void loadPredefinedQuestions() {
+        // Clear the existing list
+        questionsList.clear();
+
+        // Add predefined questions
+        questionsList.add(new QAnamnese("Question prédifinis 1", ""));
+        questionsList.add(new QAnamnese("Question prédifinis 2", ""));
+        questionsList.add(new QAnamnese("Question prédifinis 3", ""));
+        // Add more predefined questions as needed
     }
 
 }

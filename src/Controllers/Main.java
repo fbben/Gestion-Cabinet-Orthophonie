@@ -43,9 +43,9 @@ public class Main {
 
     @FXML
     private Label user;
-    
+
     public void setUserData(Orthophoniste userr) {
-        user.setText( "Dr." + userr.getNom());
+        user.setText("Dr." + userr.getNom());
     }
 
     @FXML
@@ -64,7 +64,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        
     }
 
     @FXML
@@ -74,35 +73,33 @@ public class Main {
             Parent root = loader.load();
 
             // Get the controller of the new scene
-            Canamneses Cdos=loader.getController();
+            Canamneses Cdos = loader.getController();
             Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
             Stage stage = (Stage) Anamneses.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void Dossiers(ActionEvent event) {
-        
+
         try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
-                Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
+            Parent root = loader.load();
 
-                // Get the controller of the new scene
-                Cdossiers Cdos=loader.getController();
-                Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
+            // Get the controller of the new scene
+            Cdossiers Cdos = loader.getController();
+            Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
-                Stage stage = (Stage) Dossiers.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-
+            Stage stage = (Stage) Dossiers.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +109,7 @@ public class Main {
 
     @FXML
     void Rendez_vous(ActionEvent event) {
-                
+
     }
 
     @FXML
@@ -122,6 +119,16 @@ public class Main {
 
     @FXML
     void deconnect(ActionEvent event) {
+        try {
+            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
+            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(ajouterRDVScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

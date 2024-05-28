@@ -1,4 +1,5 @@
 package Controllers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,18 +58,17 @@ public class Catelier implements Initializable {
 
     @FXML
     void valider(ActionEvent event) {
-        
 
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        SpinnerValueFactory<Integer> valueFactory1 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
-        SpinnerValueFactory<Integer> valueFactory2 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+        SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
 
-        //valueFactory.setValue(null);
-           heure.setValueFactory(valueFactory1);
-           minutes.setValueFactory(valueFactory2);
-        
+        // valueFactory.setValue(null);
+        heure.setValueFactory(valueFactory1);
+        minutes.setValueFactory(valueFactory2);
+
     }
 
 }

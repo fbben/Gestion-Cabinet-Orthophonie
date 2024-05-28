@@ -133,7 +133,7 @@ public class Orthophoniste implements Serializable{
             for (RendezVous existingRDV : dossier.getRDVs()) {
                 if (newRDV.getDate().equals(existingRDV.getDate()) && 
                     newRDV.getHeure().equals(existingRDV.getHeure())) {
-                    System.out.println("truuuuuuue");
+                    //System.out.println("truuuuuuue");
                     return true;
                 
                 }

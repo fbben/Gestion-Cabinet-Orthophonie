@@ -37,7 +37,6 @@ public class Cenfant implements Initializable {
     @FXML
     private DatePicker date;
 
-
     @FXML
     private TextField lieu_naissance;
 
@@ -49,7 +48,7 @@ public class Cenfant implements Initializable {
 
     @FXML
     private Button retour;
-    
+
     @FXML
     private Spinner<Integer> heure;
 
@@ -69,16 +68,13 @@ public class Cenfant implements Initializable {
     String observation;
     int heureRDV;
     int minutesRDV;
-    
 
-
-    public void initData(LocalDate selectedDate, String selectedobservation,int heure,int minutes) {
+    public void initData(LocalDate selectedDate, String selectedobservation, int heure, int minutes) {
         this.dateRDV = selectedDate;
         this.observation = selectedobservation;
-        this.heureRDV=heure;
-        this.minutesRDV=minutes;
+        this.heureRDV = heure;
+        this.minutesRDV = minutes;
     }
-    
 
     @FXML
     void Duree(ActionEvent event) {
@@ -88,50 +84,38 @@ public class Cenfant implements Initializable {
     @FXML
     void Valider(ActionEvent event) {
 
-        
         System.out.println("here1");
         String nom = this.nom.getText();
         String prenom = this.prenom.getText();
         String tlphm = this.tlphm.getText();
         String tlphp = this.tlphm.getText();
 
-        
-
-
-        
-
         if (!nom.matches("[a-zA-Z]+") || !prenom.matches("[a-zA-Z]+")) {
-            showAlert("Error", "Please enter alphabetic characters for nom and prenom.");
+            showAlert("Error", "Veuillez saisir des caractères alphabétiques pour le nom et le prénom.");
             return; // Exit the method if either nom or prenom contains non-alphabetic characters
         }
-       
-
-
-
-
-
 
         LocalDate date_naissance = this.date.getValue();
         String adresse = this.adresse.getText();
         String classe = this.classe.getText();
-        
+
         String lieu_naissance = this.lieu_naissance.getText();
 
         LocalDate Rdv = this.dateRDV;
         String observation = this.observation;
-        
+
         if (!validateInput(nom, "nom") || !validateInput(prenom, "prenom") || date_naissance == null ||
-        !validateInput(adresse, "adresse") || !validateInput(classe, "classe") ||
-        !validateInput(lieu_naissance, "lieu de naissance")
-        ) {
-        return; // Exit the method if any input is invalid
-         }
-         if (!validateNumericInput(tlphm, "tlphm") || !validateNumericInput(tlphp, "tlphp")) {
-            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères numériques
+                !validateInput(adresse, "adresse") || !validateInput(classe, "classe") ||
+                !validateInput(lieu_naissance, "lieu de naissance")) {
+            return; // Exit the method if any input is invalid
+        }
+        if (!validateNumericInput(tlphm, "tlphm") || !validateNumericInput(tlphp, "tlphp")) {
+            return; // Sortie de la méthode si tlphm ou tlphp ne contient pas des caractères
+                    // numériques
         }
 
         if (heure.getValue() != 2 || minutes.getValue() != 30) {
-            showAlert("Error", "Please enter a valid duration. Heure should be 2 and minutes should be 30.");
+            showAlert("Error", "La durée doit être de 2 heure et 30 minutes.");
             return; // Exit the method if the duration is incorrect
         }
         System.out.println("Nom: " + nom);
@@ -139,52 +123,40 @@ public class Cenfant implements Initializable {
         System.out.println("Date de naissance: " + date_naissance);
         System.out.println("Adresse: " + adresse);
         System.out.println("Classe: " + classe);
-       
+
         System.out.println("Lieu de naissance: " + lieu_naissance);
-        
+
         System.out.println("Rdv: " + Rdv);
         System.out.println("observation: " + observation);
         Orthophoniste currentUser = SessionManager.getInstance().getCurrentUser();
         currentUser.getDossiers();
 
-        
-
-       
-    
         try {
-            
-            String[] combinedArray = {"078212", "0912812"};
+
+            String[] combinedArray = { "078212", "0912812" };
             Enfant newPatient = new Enfant(nom, prenom, date_naissance, lieu_naissance, adresse, classe, combinedArray);
             System.out.println("New patient created: " + newPatient);
-         
 
             LocalTime skl = LocalTime.of(heureRDV, minutesRDV); // For example, 9:00 AM
-            Consultation newRDV = new Consultation(dateRDV,skl, observation, newPatient);
+            Consultation newRDV = new Consultation(dateRDV, skl, observation, newPatient);
             System.out.println("New RDV created: " + newRDV);
-            
 
             if (currentUser.Cheuvauchement(newRDV)) {
-                showAlert("Error", "The new RDV overlaps with an existing RDV.");
-                return; 
+                showAlert("Error", "Le nouveau rendez-vous chevauche un rendez-vous existant.");
+                return;
             }
-             
-             
+
             currentUser = SessionManager.getInstance().getCurrentUser();
-            currentUser.creerDossier(newPatient,newRDV);
+            currentUser.creerDossier(newPatient, newRDV);
             System.out.println(currentUser.getDossiers());
 
-            
-
-           
-            showAlert("RDV", "IRendez_vous cree.");
+            showAlert("RDV", "Votre rendez-vous a été enregistré avec succès.");
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "Invalid informations.");
+            showAlert("Error", "Informations invalides.");
         }
-
-       
 
     }
 
@@ -211,21 +183,20 @@ public class Cenfant implements Initializable {
         alert.showAndWait();
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        SpinnerValueFactory<Integer> valueFactory1 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
-        SpinnerValueFactory<Integer> valueFactory2 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+        SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
 
-        //valueFactory.setValue(null);
-           heure.setValueFactory(valueFactory1);
-           minutes.setValueFactory(valueFactory2);
-        
+        // valueFactory.setValue(null);
+        heure.setValueFactory(valueFactory1);
+        minutes.setValueFactory(valueFactory2);
+
     }
 
     private boolean validateInput(String input, String fieldName) {
         if (input.isEmpty()) {
-            showAlert("Error", "Please enter a value for " + fieldName + ".");
+            showAlert("Error", "Un champ est obligatoire. Veuillez saisir une valeur pour " + fieldName + ".");
             return false;
         }
         return true;
@@ -233,12 +204,10 @@ public class Cenfant implements Initializable {
 
     private boolean validateNumericInput(String input, String fieldName) {
         if (!input.matches("\\d+")) {
-            showAlert("Error", "Please enter numeric characters for " + fieldName + ".");
+            showAlert("Error", "Veuillez saisir des caractères numériques pour" + fieldName + ".");
             return false;
         }
         return true;
     }
-    
-    
 
 }

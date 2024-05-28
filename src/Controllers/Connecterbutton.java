@@ -16,9 +16,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
-
-
 public class Connecterbutton {
 
     @FXML
@@ -30,7 +27,6 @@ public class Connecterbutton {
     @FXML
     private TextField nom;
 
-    
     @FXML
     void Connecter(ActionEvent event) {
         String username = nom.getText();
@@ -54,8 +50,6 @@ public class Connecterbutton {
                 // Cdossiers cdos = loader.getController();
                 // cdos.setUserData(user);
 
-
-
                 Stage stage = (Stage) Connecter.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -64,7 +58,7 @@ public class Connecterbutton {
                 e.printStackTrace();
             }
         } else {
-            showAlert("Authentication Failed", "Invalid username or password.");
+            showAlert("Échec de l'authentification", "Nom d'utilisateur ou mot de passe invalide.");
         }
     }
 

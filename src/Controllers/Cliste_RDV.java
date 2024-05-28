@@ -44,15 +44,15 @@ public class Cliste_RDV {
     }
 
     public void setSelectedDossier(Dossier selectedDossierr) {
-        this.selecteddossier= selectedDossierr;
+        this.selecteddossier = selectedDossierr;
         populateRDVsTableView(selecteddossier);
     }
 
     private void populateRDVsTableView(Dossier dossier) {
-        
+
         ObservableList<RendezVous> rdvsList = FXCollections.observableArrayList(dossier.getRDVs());
         Rendez_vous.setItems(rdvsList);
-        
+
         date.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
         observation.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getObservation()));
         rdvs.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));

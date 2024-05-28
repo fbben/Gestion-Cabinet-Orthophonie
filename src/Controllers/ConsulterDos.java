@@ -96,6 +96,20 @@ public class ConsulterDos {
     @FXML
     void fiche(ActionEvent event) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/FichesDeSuivi.fxml"));
+            Parent root = loader.load();
+            fiches_suivi controller = loader.getController();
+            controller.setSelectedDossier(selectedDossier);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

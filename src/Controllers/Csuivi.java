@@ -42,13 +42,10 @@ public class Csuivi implements Initializable {
     @FXML
     private ChoiceBox<String> déroulement;
 
-
     private LocalDate dateRDV;
     String observation;
     int heureRDV;
     int minutesRDV;
-
-   
 
     @FXML
     private TextField nbdossier;
@@ -65,34 +62,31 @@ public class Csuivi implements Initializable {
     @FXML
     private Spinner<Integer> minutes;
 
-
-    public void initData(LocalDate selectedDate, String selectedobservation,int heure,int minutes) {
+    public void initData(LocalDate selectedDate, String selectedobservation, int heure, int minutes) {
         this.dateRDV = selectedDate;
         this.observation = selectedobservation;
-        this.heureRDV=heure;
-        this.minutesRDV=minutes;
+        this.heureRDV = heure;
+        this.minutesRDV = minutes;
     }
 
     private ObservableList<String> déroulementTypes = FXCollections.observableArrayList(
-            "En ligne", "Préseniel"
-    );
+            "En ligne", "Préseniel");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         déroulement.setItems(déroulementTypes);
-            SpinnerValueFactory<Integer> valueFactory1 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
-            SpinnerValueFactory<Integer> valueFactory2 =new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
-    
-            //valueFactory.setValue(null);
-               heure.setValueFactory(valueFactory1);
-               minutes.setValueFactory(valueFactory2);
-            
-        }
-        
+        SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 4, 0);
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+
+        // valueFactory.setValue(null);
+        heure.setValueFactory(valueFactory1);
+        minutes.setValueFactory(valueFactory2);
+
+    }
 
     @FXML
     void retour(ActionEvent event) {
-      try {
+        try {
             Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/AjouterRDV.fxml"));
             Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
 
@@ -111,67 +105,61 @@ public class Csuivi implements Initializable {
         String numdossier = nbdossier.getText();
         // String duree = date.getText();
         // if (!duree.matches("\\d+")) {
-        //     showAlert("Error", "Please enter numeric characters for duree.");
-        //     return; // Exit the method if duree contains non-numeric characters
+        // showAlert("Error", "Please enter numeric characters for duree.");
+        // return; // Exit the method if duree contains non-numeric characters
         // }
         LocalDate Rdv = this.dateRDV;
         String observation = this.observation;
 
         System.out.println("numdossier: " + numdossier);
-       
-        //System.out.println("Durée: " + duree);
-       
+
+        // System.out.println("Durée: " + duree);
+
         System.out.println("Rdv: " + Rdv);
         System.out.println("observation: " + observation);
 
         Orthophoniste currentUser = SessionManager.getInstance().getCurrentUser();
         currentUser.getDossiers();
 
-         try {
-            
+        if (heure.getValue() != 1 || minutes.getValue() != 00) {
+            showAlert("Error", "La durée doit être de 1 heure .");
+            return; // Exit the method if the duration is incorrect
+        }
+        try {
+
             boolean a;
             if ("En ligne".equals(selectedType)) {
-                a=true;}
-                else{
-                a=false;
+                a = true;
+            } else {
+                a = false;
             }
-            
+
             LocalTime skl = LocalTime.of(heureRDV, minutesRDV); // For example, 9:00 AM
-            Suivi newRDV = new Suivi(dateRDV,skl,observation,Integer.parseInt(numdossier), a);
+            Suivi newRDV = new Suivi(dateRDV, skl, observation, Integer.parseInt(numdossier), a);
             System.out.println("New RDVsuivi created: " + newRDV);
 
             if (currentUser.Cheuvauchement(newRDV)) {
-                showAlert("Error", "The new RDV overlaps with an existing RDV.");
-                return; 
+                showAlert("Error", "Le nouveau rendez-vous chevauche un rendez-vous existant.");
+                return;
             }
-             
+
             currentUser = SessionManager.getInstance().getCurrentUser();
             currentUser.getDossiers().get(Integer.parseInt(numdossier)).getRDVs().add(newRDV);
             System.out.println(currentUser.getDossiers());
             System.out.println(currentUser.getDossiers().get(Integer.parseInt(numdossier)).getRDVs().get(1));
             System.out.println(currentUser.getDossiers().get(1).getpatient().getNom());
-            
-            
 
-            
-
-           
-            showAlert("RDV", "IRendez_vous cree.");
+            showAlert("RDV", "Rendez_vous crée avec succée.");
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "Invalid informations.");
+            showAlert("Error", "Informations invalides..");
         }
 
-
-        
-
-         
     }
 
-
-     private void showAlert(String title, String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -179,5 +167,4 @@ public class Csuivi implements Initializable {
         alert.showAndWait();
     }
 
-   
 }
