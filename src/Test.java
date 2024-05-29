@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Test {
+public class Test {
     protected String nom;
     protected String capacite;
     protected double scoreTotal;
