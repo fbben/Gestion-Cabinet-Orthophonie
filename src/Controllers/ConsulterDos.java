@@ -65,12 +65,16 @@ public class ConsulterDos {
     void Bos(ActionEvent event) {
 
         try {
-            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/AjouterBO.fxml"));
-            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/AjouterBO.fxml"));
+            Parent root = loader.load();
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(ajouterRDVScene);
+            BOs controller = loader.getController();
+            controller.setSelectedDossier(selectedDossier);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
             stage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

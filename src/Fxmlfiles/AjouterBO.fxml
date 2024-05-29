@@ -27,7 +27,7 @@
                         <Insets left="100.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="ajouteranamnese" ellipsisString="" mnemonicParsing="false" prefHeight="29.0" prefWidth="27.0" style="-fx-background-color: 0;" text="Button">
+                  <Button fx:id="ajouteranamnese" ellipsisString="" mnemonicParsing="false" onAction="#ajouteranamnese" prefHeight="29.0" prefWidth="27.0" style="-fx-background-color: 0;" text="Button">
                      <graphic>
                         <FontAwesomeIcon fill="#20314c" glyphName="PLUS" size="20" wrappingWidth="20.0" />
                      </graphic>

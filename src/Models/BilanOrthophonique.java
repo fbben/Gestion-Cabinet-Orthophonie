@@ -3,20 +3,28 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 
-class BilanOrthophonique implements Serializable{
+public class BilanOrthophonique implements Serializable{
     private Patient patient;
     private Anamnese anamnese;
     private ArrayList<Epreuve> epreuves;
     private ArrayList<Diagnostic> diagnostics;
     private String projetTherapeutique;
 
-    BilanOrthophonique(Patient patient) {
+    public BilanOrthophonique(Patient patient) {
         this.patient = patient;
         this.epreuves = new ArrayList<>();
         this.diagnostics = new ArrayList<>();
         
     }
    
+
+
+    public void setAnamnese(Anamnese anamnese) {
+        this.anamnese = anamnese;
+    }
+    public Anamnese getAnamnese() {
+        return anamnese;
+    }
 
     public void setpatient(Patient patient){
         this.patient=patient;

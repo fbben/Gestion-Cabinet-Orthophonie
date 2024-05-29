@@ -34,7 +34,6 @@ public class fiches_suivi {
 
     public void setSelectedDossier(Dossier selectedDossier) {
         this.selectedDossier = selectedDossier;
-        // Load the existing fiches_suivi for the selected dossier
         fiches.getItems().setAll(selectedDossier.getFichesSuivi());
     }
 
@@ -45,7 +44,7 @@ public class fiches_suivi {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/ListeDesObjectifs.fxml"));
             Parent root = loader.load();
 
-            // Pass the fiches_suivi controller to Objectifs controller
+           
             objectifs controller = loader.getController();
             controller.setFichesSuiviController(this);
 
@@ -66,7 +65,7 @@ public class fiches_suivi {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/ListeDesObjectifs.fxml"));
                 Parent root = loader.load();
 
-                // Pass the selected Fiche_suivi to the Objectifs controller
+              
                 objectifs controller = loader.getController();
                 controller.setFichesSuiviController(this);
 
@@ -95,7 +94,6 @@ public class fiches_suivi {
 
     @FXML
     public void initialize() {
-        // Set the custom cell factory to use FicheSuiviListCell
         fiches.setCellFactory(
                 (Callback<ListView<Fiche_suivi>, ListCell<Fiche_suivi>>) new Callback<ListView<Fiche_suivi>, ListCell<Fiche_suivi>>() {
                     @Override
@@ -107,7 +105,7 @@ public class fiches_suivi {
                                 if (empty || item == null) {
                                     setText(null);
                                 } else {
-                                    setText("fiche"); // Display the description or any other relevant information
+                                    setText("fiche");
                                 }
                             }
                         };
