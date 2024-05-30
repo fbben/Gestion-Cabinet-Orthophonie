@@ -1,13 +1,13 @@
 package Models;
 import java.util.ArrayList;
 
-class Test {
+public class Test {
     protected String nom;
     protected String capacite;
     protected double scoreTotal;
     protected String conclusion;
 
-    Test(String nom, String capacite) {
+    public Test(String nom, String capacite) {
         this.nom = nom;
         this.capacite = capacite;
     }

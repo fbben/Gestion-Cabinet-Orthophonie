@@ -13,7 +13,7 @@ public class UserManager {
     private UserManager() {
         users = new HashMap<>();
         
-         Orthophoniste user1 = new Orthophoniste("Fares","lz");
+         Orthophoniste user1 = new Orthophoniste("a","a");
         // Orthophoniste user2 = new Orthophoniste("Grine","maz");
          users.put(user1.getNom(), user1);
         // users.put(user2.getNom(), user2);

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Models.Anamnese;
 import Models.BilanOrthophonique;
+import Models.Diagnostic;
 import Models.Dossier;
 import Models.Fiche_suivi;
 import Models.QAnamnese;
@@ -41,10 +42,10 @@ public class BOs implements Initializable{
     private ListView<Anamnese> anamneses;
 
     @FXML
-    private TableColumn<?, ?> categorie;
+    private TableColumn<Diagnostic, String> categorie;
 
     @FXML
-    private TableView<?> diagnostic;
+    private TableView<Diagnostic> diagnostic;
 
     @FXML
     private TableView<?> epreuves;

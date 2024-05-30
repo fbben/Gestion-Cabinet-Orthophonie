@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import Models.Anamnese;
+import Models.*;
 import Models.Orthophoniste;
 import Models.SessionManager;
 import javafx.collections.FXCollections;
@@ -14,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -42,15 +41,16 @@ public class Canamneses implements Initializable {
 
     @FXML
     private TableView<Anamnese> anamneses;
+    @FXML
+    private TableColumn<Anamnese, String> description;
+    @FXML
+    private TableColumn<Anamnese, String> titre;
 
     @FXML
     private Button creer;
 
     @FXML
     private Button deconnect;
-
-    @FXML
-    private TableColumn<Anamnese, String> description;
 
     @FXML
     private Button modifier;
@@ -68,9 +68,6 @@ public class Canamneses implements Initializable {
     private Button stat;
 
     @FXML
-    private TableColumn<Anamnese, String> titre;
-
-    @FXML
     private Label user;
 
     public void setUserData(Orthophoniste userr) {
@@ -79,7 +76,6 @@ public class Canamneses implements Initializable {
 
     @FXML
     void Anamneses(ActionEvent event) {
-
     }
 
     @FXML
@@ -99,17 +95,44 @@ public class Canamneses implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    @FXML
-    void Rendez_vous(ActionEvent event) {
-
     }
 
     @FXML
     void Tests(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Test.fxml"));
+            Parent root = loader.load();
 
+            // Get the controller of the new scene
+            TestC testc = loader.getController();
+            testc.setUserData(SessionManager.getInstance().getCurrentUser());
+
+            Stage stage = (Stage) Tests.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void Rendez_vous(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Main.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the new scene
+            Main main = loader.getController();
+            main.setUserData(SessionManager.getInstance().getCurrentUser());
+
+            Stage stage = (Stage) Rendez_vous.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -134,17 +157,6 @@ public class Canamneses implements Initializable {
 
     @FXML
     void déconnecter(ActionEvent event) {
-
-        try {
-            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
-            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(ajouterRDVScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -171,7 +183,7 @@ public class Canamneses implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Aucune Anamnese n'est selectionné");
+            System.out.println("No Anamnese selected!");
         }
 
     }
@@ -204,7 +216,7 @@ public class Canamneses implements Initializable {
     private void loadAnamneses(Orthophoniste user) {
         List<Anamnese> anamneses = user.getAnamneses();
         if (anamneses == null) {
-            System.out.println("pas d'anamneses trouvées por cet utilisateur!");
+            System.out.println("No anamneses found for the user!");
         } else {
             for (Anamnese anamnese : anamneses) {
                 System.out.println("Loaded anamnese: " + anamnese.getTitre() + " - " + anamnese.getDescription());

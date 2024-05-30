@@ -21,9 +21,13 @@ public class Orthophoniste implements Serializable{
     private String email;
     private String motDePasse;
 
-    private List<Question> questions;
+    private List<Exercice> exercice;
     private Map<Integer, Dossier> dossiers;
     private ArrayList<Anamnese> Anamneses;
+
+    public List<Exercice> getExercice() {
+        return exercice;
+    }
 
     
     public ArrayList<Anamnese> getAnamneses() {
@@ -52,12 +56,17 @@ public class Orthophoniste implements Serializable{
         this.motDePasse = motDePasse;
         this.dossiers = new HashMap<>();
         this.Anamneses = new ArrayList<>();
+        this.exercice = new ArrayList<>();
+
     }
     public Orthophoniste(String nom,String motDePasse) {
         this.nom = nom;
         this.motDePasse=motDePasse;
         this.dossiers = new HashMap<>();
         this.Anamneses = new ArrayList<>();
+        this.exercice = new ArrayList<>();
+
+
     }
 
     

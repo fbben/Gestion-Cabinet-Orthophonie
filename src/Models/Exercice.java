@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 
-class Exercice implements Serializable{
+public class Exercice implements Serializable{
     protected String consigne;
     protected String material;
     protected ArrayList<Double> score;

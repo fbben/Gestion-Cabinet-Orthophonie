@@ -1,13 +1,15 @@
 package Controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Models.Orthophoniste;
 import Models.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class Main {
+public class Main{
 
     @FXML
     private Button AjouterRDV;
@@ -43,9 +45,9 @@ public class Main {
 
     @FXML
     private Label user;
-
+    
     public void setUserData(Orthophoniste userr) {
-        user.setText("Dr." + userr.getNom());
+        user.setText( "Dr." + userr.getNom());
     }
 
     @FXML
@@ -64,6 +66,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        
     }
 
     @FXML
@@ -73,33 +76,35 @@ public class Main {
             Parent root = loader.load();
 
             // Get the controller of the new scene
-            Canamneses Cdos = loader.getController();
+            Canamneses Cdos=loader.getController();
             Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
             Stage stage = (Stage) Anamneses.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 
     }
 
     @FXML
     void Dossiers(ActionEvent event) {
-
+        
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
-            Parent root = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxmlfiles/Dossier.fxml"));
+                Parent root = loader.load();
 
-            // Get the controller of the new scene
-            Cdossiers Cdos = loader.getController();
-            Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
+                // Get the controller of the new scene
+                Cdossiers Cdos=loader.getController();
+                Cdos.setUserData(SessionManager.getInstance().getCurrentUser());
 
-            Stage stage = (Stage) Dossiers.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+                Stage stage = (Stage) Dossiers.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,7 +114,7 @@ public class Main {
 
     @FXML
     void Rendez_vous(ActionEvent event) {
-
+          
     }
 
     @FXML
@@ -119,16 +124,6 @@ public class Main {
 
     @FXML
     void deconnect(ActionEvent event) {
-        try {
-            Parent ajouterRDVRoot = FXMLLoader.load(getClass().getResource("/Fxmlfiles/Bienvenue.fxml"));
-            Scene ajouterRDVScene = new Scene(ajouterRDVRoot);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(ajouterRDVScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -141,5 +136,11 @@ public class Main {
     void stat(ActionEvent event) {
 
     }
+
+    // @Override
+    // public void initialize(URL location, ResourceBundle resources) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    // }
 
 }
