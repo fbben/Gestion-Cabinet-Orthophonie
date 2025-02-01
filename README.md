@@ -2,6 +2,7 @@
 
 ## Overview
 This system is designed to assist speech therapists in managing their clinics efficiently. It provides tools for organizing appointments, patient assessments, and therapy follow-ups. The goal is to enhance the quality of care, improve patient tracking, and streamline administrative tasks.
+
 ![Home](images/home.png)
 ![RDVList](images/RDVList.png)
 ![Bilan](images/bilan.png)
